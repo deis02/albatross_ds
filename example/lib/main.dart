@@ -104,6 +104,8 @@ class _GalleryPageState extends State<GalleryPage> {
                 title: 'Rp 1,250,000 · Weekday morning 18 holes, caddie and cart included, at Pondok Indah Golf Course',
                 onTap: () => _toast('Deal'),
               ),
+              const SizedBox(height: AdsSpace.s12),
+              AdsFeaturedPromo(title: 'Rp 999,000 · Sun & PH PM Deal at Suvarna Jakarta Golf Club', claimed: true, onTap: () => _toast('Deal')),
               const _Section('Icon button'),
               Wrap(spacing: AdsSpace.s8, children: <Widget>[
                 AdsIconButton(icon: const AdsIcon('info'), semanticLabel: 'Info', onPressed: () {}),

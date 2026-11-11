@@ -82,11 +82,16 @@ class AdsSwingPassMark extends StatelessWidget {
 /// [tag] B3 Semibold Purple 500; a Button S with a chevron on the bottom line.
 /// The whole card is one tap target, the button inside only marks it.
 ///
+/// [claimed]: the member already has this deal. An "Active" status takes the
+/// button's place, the same size as Button S (32, padding 0 12, radius 8):
+/// Light 300, CTA S Dark 300, green tick 16. The card stays tappable.
+///
 /// ```dart
 /// AdsFeaturedPromo(
 ///   title: 'Rp 999,000 · Sun & PH PM Deal at Suvarna Jakarta Golf Club',
 ///   onTap: () => openDeal(deal),
 /// )
+/// AdsFeaturedPromo(title: deal.title, claimed: true, onTap: () => openDeal(deal))
 /// ```
 class AdsFeaturedPromo extends StatelessWidget {
   const AdsFeaturedPromo({
@@ -94,6 +99,8 @@ class AdsFeaturedPromo extends StatelessWidget {
     required this.title,
     this.tag = 'Swing Pass Exclusive',
     this.actionLabel = 'Join',
+    this.claimed = false,
+    this.claimedLabel = 'Active',
     this.onTap,
     this.semanticLabel,
   });
@@ -101,6 +108,10 @@ class AdsFeaturedPromo extends StatelessWidget {
   final String title;
   final String tag;
   final String actionLabel;
+
+  /// The member already has this deal: show [claimedLabel] instead of the button.
+  final bool claimed;
+  final String claimedLabel;
   final VoidCallback? onTap;
 
   /// What a screen reader says. Defaults to title, tag and action.
@@ -113,7 +124,7 @@ class AdsFeaturedPromo extends StatelessWidget {
     return Semantics(
       button: true,
       enabled: onTap != null,
-      label: semanticLabel ?? '$title. $tag. $actionLabel',
+      label: semanticLabel ?? '$title. $tag. ${claimed ? claimedLabel : actionLabel}',
       excludeSemantics: true,
       child: AdsTappable(
         onTap: onTap,
@@ -172,7 +183,10 @@ class AdsFeaturedPromo extends StatelessWidget {
                               ),
                               const SizedBox(width: AdsSpace.s16),
                               // a marker, not a second button: the card is the tap target
-                              IgnorePointer(
+                              if (claimed)
+                                _ClaimedStatus(label: claimedLabel)
+                              else
+                                IgnorePointer(
                                 child: ExcludeFocus(
                                   child: AdsButton(
                                     label: actionLabel,
@@ -193,6 +207,30 @@ class AdsFeaturedPromo extends StatelessWidget {
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+/// "Active" status of a claimed deal: Button S size, Light 300, CTA S Dark 300, green tick 16.
+class _ClaimedStatus extends StatelessWidget {
+  const _ClaimedStatus({required this.label});
+
+  final String label;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 32,
+      padding: const EdgeInsets.symmetric(horizontal: AdsSpace.s12),
+      decoration: BoxDecoration(color: AdsColors.light300, borderRadius: BorderRadius.circular(AdsRadius.r8)),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          const AdsIcon('tick-circle', style: AdsIconStyle.solid, size: 16, color: AdsColors.green500),
+          const SizedBox(width: AdsSpace.s4),
+          Text(label, maxLines: 1, softWrap: false, style: AdsType.ctaS.copyWith(color: AdsColors.dark300)),
+        ],
       ),
     );
   }

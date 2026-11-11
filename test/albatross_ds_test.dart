@@ -176,6 +176,22 @@ void main() {
     expect(t.takeException(), isNull);
   });
 
+  testWidgets('claimed featured promo shows Active instead of Join and stays tappable', (WidgetTester t) async {
+    int n = 0;
+    await t.pumpWidget(_app(SizedBox(
+      width: 343,
+      child: AdsFeaturedPromo(title: 'Rp 999,000 · Sun & PH PM Deal at Suvarna Jakarta Golf Club', claimed: true, onTap: () => n++),
+    )));
+    await t.pump(const Duration(milliseconds: 300));
+    expect(find.text('Active'), findsOneWidget);
+    expect(find.text('Join'), findsNothing);
+    expect(find.byType(AdsButton), findsNothing);
+    final Size s = t.getSize(find.ancestor(of: find.text('Active'), matching: find.byType(Container)).first);
+    expect(s.height, 32);
+    await t.tap(find.text('Active'));
+    expect(n, 1);
+  });
+
   testWidgets('tabs report the tapped index', (WidgetTester t) async {
     int tab = 0;
     await t.pumpWidget(_app(StatefulBuilder(
