@@ -1,0 +1,19 @@
+name: albatross_ds_gallery
+description: Albatross DS widget gallery (Flutter web preview).
+publish_to: none
+version: 0.1.0
+
+environment:
+  sdk: ^3.5.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  albatross_ds:
+    path: ../
+
+dev_dependencies:
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true

@@ -1,0 +1,29 @@
+name: albatross_ds
+description: Albatross, the Swing design system for Flutter. Tokens are generated from the web DS tokens.css, widgets follow components.css.
+version: 0.1.0
+homepage: https://stat.chara.id/swing/ds/
+repository: https://github.com/deis02/albatross_ds
+publish_to: none
+
+environment:
+  sdk: ^3.5.0
+  flutter: ">=3.24.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_svg: ^2.0.10
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  fonts:
+    - family: Manrope
+      fonts:
+        - asset: fonts/Manrope-Variable.ttf
+  assets:
+    - assets/icons/line/
+    - assets/icons/solid/
