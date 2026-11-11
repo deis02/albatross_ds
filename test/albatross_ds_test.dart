@@ -157,6 +157,25 @@ void main() {
     expect(removed, 1);
   });
 
+  testWidgets('featured promo is one tap target and clamps the title', (WidgetTester t) async {
+    int n = 0;
+    await t.pumpWidget(_app(SizedBox(
+      width: 343,
+      child: AdsFeaturedPromo(
+        title: 'Rp 999,000 · Sun & PH PM Deal at Suvarna Jakarta Golf Club, weekday and weekend, caddie and cart included',
+        onTap: () => n++,
+      ),
+    )));
+    await t.pump(const Duration(milliseconds: 300));
+    expect(find.text('Swing Pass Exclusive'), findsOneWidget);
+    expect(find.text('Join'), findsOneWidget);
+    final Text title = t.widget<Text>(find.textContaining('Suvarna'));
+    expect(title.maxLines, 2);
+    await t.tap(find.text('Join'));
+    expect(n, 1);
+    expect(t.takeException(), isNull);
+  });
+
   testWidgets('tabs report the tapped index', (WidgetTester t) async {
     int tab = 0;
     await t.pumpWidget(_app(StatefulBuilder(

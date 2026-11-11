@@ -9,7 +9,7 @@ enum AdsIconStyle { line, solid }
 /// An icon from the Albatross icon set.
 ///
 /// The package bundles only the icons its widgets use (checkmark, chevron-down,
-/// close-sm, close-lg, eye, eye-off, info). For any other icon, add the SVG from
+/// chevron-right, close-sm, close-lg, eye, eye-off, info). For any other icon, add the SVG from
 /// https://stat.chara.id/swing/ds/icon.html to your app and pass your own widget
 /// (for example `SvgPicture.asset(...)`) to the `icon` slot of a component.
 ///

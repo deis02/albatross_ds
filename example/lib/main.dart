@@ -97,6 +97,13 @@ class _GalleryPageState extends State<GalleryPage> {
                 decoration: BoxDecoration(color: AdsColors.light200, borderRadius: BorderRadius.circular(AdsRadius.r16)),
                 child: Row(children: <Widget>[AdsButton.glow(label: 'Get Swing Pass', purple: true, onPressed: () {})]),
               ),
+              const _Section('Featured promo'),
+              AdsFeaturedPromo(title: 'Rp 999,000 · Sun & PH PM Deal at Suvarna Jakarta Golf Club', onTap: () => _toast('Deal')),
+              const SizedBox(height: AdsSpace.s12),
+              AdsFeaturedPromo(
+                title: 'Rp 1,250,000 · Weekday morning 18 holes, caddie and cart included, at Pondok Indah Golf Course',
+                onTap: () => _toast('Deal'),
+              ),
               const _Section('Icon button'),
               Wrap(spacing: AdsSpace.s8, children: <Widget>[
                 AdsIconButton(icon: const AdsIcon('info'), semanticLabel: 'Info', onPressed: () {}),
