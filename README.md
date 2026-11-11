@@ -12,7 +12,7 @@ Bahasa Indonesia: [README.id.md](README.id.md)
 | `AdsButton` (incl. `AdsButton.glow`), `AdsIconButton`, `AdsButtonPair` | |
 | `AdsTextField`, `AdsSelect` + `showAdsOptionsSheet`, `showAdsSheet` | |
 | `AdsTag`, `AdsTagGroup`, `AdsCheckbox`, `AdsCheckTile`, `AdsRadio`, `AdsRadioTile`, `AdsTabs` | |
-| `AdsFeaturedPromo`, `AdsSwingPassBackground`, `AdsSwingPassMark` | |
+| `AdsFeaturedPromo`, `AdsSwingPassBackground`, `AdsSwingPassMark`, `AdsCashbackTable` | |
 
 Gallery (Flutter web build of `example/`): https://deis02.github.io/albatross_ds/
 

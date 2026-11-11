@@ -106,6 +106,14 @@ class _GalleryPageState extends State<GalleryPage> {
               ),
               const SizedBox(height: AdsSpace.s12),
               AdsFeaturedPromo(title: 'Rp 999,000 · Sun & PH PM Deal at Suvarna Jakarta Golf Club', claimed: true, onTap: () => _toast('Deal')),
+              const _Section('Cashback table'),
+              Text('Play more to earn more with Swing Credits at Suvarna Jakarta Golf Club', style: AdsType.h4.copyWith(color: AdsColors.dark500)),
+              const SizedBox(height: AdsSpace.s24),
+              const AdsCashbackTable(rows: <AdsCashbackRow>[
+                AdsCashbackRow(day: 'Mon - Fri', time: '05:00 - 12:00', regular: '10%', pass: '50%'),
+                AdsCashbackRow(day: 'Mon - Fri', time: '12:00 - 20:00', regular: '8%', pass: '40%'),
+                AdsCashbackRow(day: 'Sat - Sun', time: '05:00 - 20:00', regular: '8%', pass: '40%'),
+              ]),
               const _Section('Icon button'),
               Wrap(spacing: AdsSpace.s8, children: <Widget>[
                 AdsIconButton(icon: const AdsIcon('info'), semanticLabel: 'Info', onPressed: () {}),
