@@ -85,7 +85,6 @@ class AdsButton extends StatelessWidget {
         trailingIcon = null;
 
   const AdsButton._iconOnly({
-    super.key,
     required Widget this.icon,
     required String this.semanticLabel,
     this.onPressed,
@@ -159,14 +158,14 @@ class AdsButton extends StatelessWidget {
   }
 
   _Metrics _metrics() {
-    if (_glow != null) return _Metrics(44, AdsSpace.s16, AdsSpace.s8, 16, AdsType.ctaM);
+    if (_glow != null) return const _Metrics(44, AdsSpace.s16, AdsSpace.s8, 16, AdsType.ctaM);
     final bool ghost = appearance == AdsButtonAppearance.ghost;
     return switch (size) {
       AdsButtonSize.xl => _Metrics(56, ghost ? AdsSpace.s16 : AdsSpace.s32, AdsSpace.gapRelated, 24, AdsType.ctaL),
       AdsButtonSize.l => _Metrics(48, ghost ? AdsSpace.s12 : AdsSpace.s24, AdsSpace.gapRelated, 20, AdsType.ctaL),
       AdsButtonSize.m => _Metrics(40, ghost ? AdsSpace.s8 : AdsSpace.s16, AdsSpace.gapRelated, 20, AdsType.ctaL),
       AdsButtonSize.s => _Metrics(32, ghost ? AdsSpace.s8 : AdsSpace.s12, AdsSpace.gapTight, 16, AdsType.ctaS),
-      AdsButtonSize.xs => _Metrics(24, AdsSpace.s8, AdsSpace.gapTight, 16, AdsType.ctaS),
+      AdsButtonSize.xs => const _Metrics(24, AdsSpace.s8, AdsSpace.gapTight, 16, AdsType.ctaS),
     };
   }
 

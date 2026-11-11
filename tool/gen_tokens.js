@@ -168,8 +168,6 @@ async function main() {
 // Re-run: node tool/gen_tokens.js
 // ignore_for_file: constant_identifier_names, lines_longer_than_80_chars
 
-import 'dart:ui' show FontVariation, TextLeadingDistribution;
-
 import 'package:flutter/painting.dart';
 
 const String _family = 'Manrope';
