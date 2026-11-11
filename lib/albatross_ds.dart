@@ -6,7 +6,9 @@
 library;
 
 export 'src/button.dart';
+export 'src/cashback_table.dart';
 export 'src/checkbox.dart';
+export 'src/featured_promo.dart';
 export 'src/icon.dart';
 export 'src/interaction.dart' show AdsStates, AdsTappable, AdsFocusRing;
 export 'src/radio.dart';

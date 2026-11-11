@@ -27,3 +27,4 @@ flutter:
   assets:
     - assets/icons/line/
     - assets/icons/solid/
+    - assets/brand/

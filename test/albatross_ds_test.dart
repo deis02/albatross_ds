@@ -157,6 +157,63 @@ void main() {
     expect(removed, 1);
   });
 
+  testWidgets('featured promo is one tap target and clamps the title', (WidgetTester t) async {
+    int n = 0;
+    await t.pumpWidget(_app(SizedBox(
+      width: 343,
+      child: AdsFeaturedPromo(
+        title: 'Rp 999,000 · Sun & PH PM Deal at Suvarna Jakarta Golf Club, weekday and weekend, caddie and cart included',
+        onTap: () => n++,
+      ),
+    )));
+    await t.pump(const Duration(milliseconds: 300));
+    expect(find.text('Swing Pass Exclusive'), findsOneWidget);
+    expect(find.text('Join'), findsOneWidget);
+    final Text title = t.widget<Text>(find.textContaining('Suvarna'));
+    expect(title.maxLines, 2);
+    await t.tap(find.text('Join'));
+    expect(n, 1);
+    expect(t.takeException(), isNull);
+  });
+
+  testWidgets('claimed featured promo shows Active instead of Join and stays tappable', (WidgetTester t) async {
+    int n = 0;
+    await t.pumpWidget(_app(SizedBox(
+      width: 343,
+      child: AdsFeaturedPromo(title: 'Rp 999,000 · Sun & PH PM Deal at Suvarna Jakarta Golf Club', claimed: true, onTap: () => n++),
+    )));
+    await t.pump(const Duration(milliseconds: 300));
+    expect(find.text('Active'), findsOneWidget);
+    expect(find.text('Join'), findsNothing);
+    expect(find.byType(AdsButton), findsNothing);
+    final Size s = t.getSize(find.ancestor(of: find.text('Active'), matching: find.byType(Container)).first);
+    expect(s.height, 32);
+    await t.tap(find.text('Active'));
+    expect(n, 1);
+  });
+
+  testWidgets('cashback table lays out three columns and moves the here tab', (WidgetTester t) async {
+    const List<AdsCashbackRow> rows = <AdsCashbackRow>[
+      AdsCashbackRow(day: 'Mon - Fri', time: '05:00 - 12:00', regular: '10%', pass: '50%'),
+      AdsCashbackRow(day: 'Sat - Sun', time: '05:00 - 20:00', regular: '8%', pass: '40%'),
+    ];
+    await t.pumpWidget(_app(const SizedBox(width: 343, child: AdsCashbackTable(rows: rows))));
+    await t.pump(const Duration(milliseconds: 300));
+    expect(t.takeException(), isNull);
+    expect(find.text('You are here'), findsOneWidget);
+    expect(find.text('Regular Swing players'), findsOneWidget);
+    expect(find.text('50%'), findsOneWidget);
+    expect(find.text('cashback'), findsNWidgets(4));
+    // the tab sits over the regular (middle) column
+    final double tabX = t.getCenter(find.text('You are here')).dx, regX = t.getCenter(find.text('10%')).dx;
+    expect((tabX - regX).abs() < 1, isTrue);
+    await t.pumpWidget(_app(const SizedBox(width: 343, child: AdsCashbackTable(rows: rows, current: AdsCashbackPlan.pass))));
+    await t.pump(const Duration(milliseconds: 300));
+    expect((t.getCenter(find.text('You are here')).dx - t.getCenter(find.text('50%')).dx).abs() < 1, isTrue);
+    await t.pumpWidget(_app(const SizedBox(width: 343, child: AdsCashbackTable(rows: rows, current: AdsCashbackPlan.none))));
+    expect(find.text('You are here'), findsNothing);
+  });
+
   testWidgets('tabs report the tapped index', (WidgetTester t) async {
     int tab = 0;
     await t.pumpWidget(_app(StatefulBuilder(
