@@ -13,7 +13,7 @@ English: [README.md](README.md)
 | `AdsTextField`, `AdsSelect` + `showAdsOptionsSheet`, `showAdsSheet` | |
 | `AdsTag`, `AdsTagGroup`, `AdsCheckbox`, `AdsCheckTile`, `AdsRadio`, `AdsRadioTile`, `AdsTabs` | |
 
-Gallery (build Flutter web dari `example/`): https://deis02.github.io/albatross_ds/
+Gallery (build Flutter web dari `example/`): https://stat.chara.id/swing/ds/flutter/ (cadangan: https://deis02.github.io/albatross_ds/)
 
 ## Pasang
 

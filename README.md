@@ -13,7 +13,7 @@ Bahasa Indonesia: [README.id.md](README.id.md)
 | `AdsTextField`, `AdsSelect` + `showAdsOptionsSheet`, `showAdsSheet` | |
 | `AdsTag`, `AdsTagGroup`, `AdsCheckbox`, `AdsCheckTile`, `AdsRadio`, `AdsRadioTile`, `AdsTabs` | |
 
-Gallery (Flutter web build of `example/`): https://deis02.github.io/albatross_ds/
+Gallery (Flutter web build of `example/`): https://stat.chara.id/swing/ds/flutter/ (mirror: https://deis02.github.io/albatross_ds/)
 
 ## Install
 
